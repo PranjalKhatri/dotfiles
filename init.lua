@@ -1,6 +1,6 @@
 require("core.options")
 require("core.keymaps")
-require("custom.cp")
+require("custom.competetive_programming.cp")
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -28,4 +28,7 @@ require("lazy").setup({
 	require("plugins.gitsigns"),
 	require("plugins.misc"),
 	require("plugins.alpha"),
+
+	require("custom.competetive_programming.competiest"),
 })
+require("lsp_signature").setup()

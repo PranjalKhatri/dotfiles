@@ -184,6 +184,9 @@ return {
 				clangd = {
 					cmd = { "clangd" },
 					filetypes = { "c", "cpp", "objc", "objcpp" },
+					init_options = {
+						fallbackFlags = { "-std=c++23" }, -- Use C++23 as a default standard
+					},
 					settings = {
 						clangd = {
 							-- Formatting settings
@@ -249,19 +252,6 @@ return {
 					end,
 				},
 			})
-		end,
-	},
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "InsertEnter",
-		opts = {
-			bind = true,
-			handler_opts = {
-				border = "rounded",
-			},
-		},
-		config = function(_, opts)
-			require("lsp_signature").setup(opts)
 		end,
 	},
 }

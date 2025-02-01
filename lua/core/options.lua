@@ -1,6 +1,15 @@
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.expandtab = true
+--NEOVIDE SETTINGS
+if vim.g.neovide == true then
+	-- vim.cmd 'set guifont=Hack\ NF:h10'
+	-- vim.o.guifont='Consolas:h10'
+	-- vim.o.guifont='FiraCode NF:h14'
+	-- vim.o.guifont = "Operator Mono,FiraCode NF:h14"
+	vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
+	vim.g.neovide_cursor_vfx_mode = "railgun"
+end
 -- set true if you have nerd font in terminal
 vim.g.have_nerd_font = true
 -- [[ Setting options ]]
@@ -52,3 +61,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 vim.opt.autoindent = true -- maintain indent from previous line {default : true}
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
