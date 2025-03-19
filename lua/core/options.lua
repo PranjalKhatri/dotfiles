@@ -7,6 +7,7 @@ if vim.g.neovide == true then
 	-- vim.o.guifont='Consolas:h10'
 	-- vim.o.guifont='FiraCode NF:h14'
 	-- vim.o.guifont = "Operator Mono,FiraCode NF:h14"
+	vim.o.guifont = "FiraCode Nerd Font Mono:h14"
 	vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
 	vim.g.neovide_cursor_vfx_mode = "railgun"
 end

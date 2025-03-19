@@ -124,7 +124,7 @@
 	"Sieve of Eratosthenes": {
 		"prefix": "sieve",
 		"body": [
-			"const int MAXN = 1000000;",
+			"const int MAXN = 1000100;",
 			"std::vector<int> prime;",
 			"bool is_composite[MAXN];",
 			"",
@@ -174,6 +174,22 @@
 			"int nCr(int n,int r){return ((fac[n]*invfac[r]%MOD)*invfac[n-r])%MOD;}"
 		],
 		"description": "nCr using modInverse and permutation"
+	},
+	"inversePermutation": {
+		"prefix": "inversePermutation",
+		"description": "Compute the inverse of a given permutation vector with optional 1-based indexing",
+		"body": [
+			"#include <vector>",
+			"std::vector<int> inversePermutation(const std::vector<int>& perm, bool elementsStartFromOne = false) {",
+			"    int n = perm.size();",
+			"    std::vector<int> inverse(n + elementsStartFromOne);",
+			"    for (int i = 0; i < n; ++i) {",
+			"        inverse[permut[i]] = i + elementsStartFromOne;",
+			"    }",
+			"    return inverse;",
+			"}"
+		],
+		"scope": "cpp"
 	},
 	"graph_successor": {
 		"prefix": "successor_graph",
@@ -501,5 +517,42 @@
 			"};"
 		],
 		"description": "Class for Lowest Common Ancestor (LCA) with Segment Tree."
+	},
+	"Bellman-Ford Algorithm with Struct": {
+		"prefix": "bellman-ford-struct",
+		"body": [
+			"void bellman(int s, int n, vector<Edge> &edges) {",
+			"\tvi dist(n, LONG_MAX);",
+			"\tdist[s] = 0;",
+			"\tfor (int i = 1; i <= n - 1; i++) {",
+			"\t\tfor (auto e : edges) {",
+			"\t\t\tdist[e.v] = min(dist[e.u] + e.weight, dist[e.v]);",
+			"\t\t}",
+			"\t}",
+			"}"
+		],
+		"description": "Bellman-Ford Algorithm using struct Edge"
+	},
+	"Floyd-Warshall Algorithm with Struct": {
+		"prefix": "floyd-warshall-struct",
+		"body": [
+			"void floydwarshall(int n, vector<Edge>& edges) {",
+			"\tconst int INF = INT32_MAX;",
+			"\tvvi d(n, vi(n, INF));",
+			"\tfor (auto e : edges) {",
+			"\t\tint a = e.u, b = e.v, w = e.weight;",
+			"\t\td[a][b] = min(d[a][b], w);",
+			"\t}",
+			"\tfor (int k = 0; k < n; ++k) {",
+			"\t\tfor (int i = 0; i < n; ++i) {",
+			"\t\t\tfor (int j = 0; j < n; ++j) {",
+			"\t\t\t\tif (d[i][k] < INF && d[k][j] < INF)",
+			"\t\t\t\t\td[i][j] = min(d[i][j], d[i][k] + d[k][j]);",
+			"\t\t\t}",
+			"\t\t}",
+			"\t}",
+			"}"
+		],
+		"description": "Floyd-Warshall Algorithm using struct Edge"
 	}
 }

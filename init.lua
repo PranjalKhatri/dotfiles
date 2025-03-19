@@ -28,7 +28,7 @@ require("lazy").setup({
 	require("plugins.gitsigns"),
 	require("plugins.misc"),
 	require("plugins.alpha"),
-
+	require("plugins.render-markdown"),
 	require("custom.competetive_programming.competiest"),
 })
 require("lsp_signature").setup()
