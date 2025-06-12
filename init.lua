@@ -30,5 +30,6 @@ require("lazy").setup({
 	require("plugins.alpha"),
 	require("plugins.render-markdown"),
 	require("custom.competetive_programming.competiest"),
+	require("plugins.hardtime"),
 })
 require("lsp_signature").setup()
