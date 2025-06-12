@@ -107,7 +107,6 @@ return {
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
 					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
-
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header.
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -161,7 +160,7 @@ return {
 				for type, icon in pairs(signs) do
 					diagnostic_signs[vim.diagnostic.severity[type]] = icon
 				end
-				vim.diagnostic.config({ signs = { text = diagnostic_signs } })
+				vim.diagnostic.config({ virtual_text = true, signs = { text = diagnostic_signs } })
 			end
 
 			-- LSP servers and clients are able to communicate to each other what features they support.
@@ -182,10 +181,11 @@ return {
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
 				clangd = {
-					cmd = { "clangd" },
+					-- cmd = { "clangd" },
+					cmd = { "D:/winlibs/mingw64/bin/clangd.exe" }, -- Update path as needed
 					filetypes = { "c", "cpp", "objc", "objcpp" },
 					init_options = {
-						fallbackFlags = { "-std=c++23" }, -- Use C++23 as a default standard
+						fallbackFlags = { "-std=c++23", "-D_GLIBCXX_HOSTED=1" }, -- Use C++23 as a default standard
 					},
 					settings = {
 						clangd = {
