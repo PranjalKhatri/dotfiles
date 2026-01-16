@@ -1,8 +1,6 @@
 require("core.options")
 require("core.keymaps")
 require("custom.competetive_programming.cp")
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -30,6 +28,8 @@ require("lazy").setup({
 	require("plugins.alpha"),
 	require("plugins.render-markdown"),
 	require("custom.competetive_programming.competiest"),
-	require("plugins.hardtime"),
+	-- require("plugins.hardtime"),
+	require("plugins.mini"),
 })
 require("lsp_signature").setup()
+require("mini.surround").setup()

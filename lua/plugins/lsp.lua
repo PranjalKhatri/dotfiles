@@ -181,19 +181,18 @@ return {
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
 				clangd = {
-					-- cmd = { "clangd" },
-					cmd = { "D:/winlibs/mingw64/bin/clangd.exe" }, -- Update path as needed
-					filetypes = { "c", "cpp", "objc", "objcpp" },
-					init_options = {
-						fallbackFlags = { "-std=c++23", "-D_GLIBCXX_HOSTED=1" }, -- Use C++23 as a default standard
+					cmd = {
+						"clangd",
+						"--background-index", -- Indexing for fast "Go to Definition"
+						"--clang-tidy", -- Real-time linting for your engine code
+						"--header-insertion=iwyu", -- Automatically adds #include as you type
+						"--completion-style=detailed",
+						"--function-arg-placeholders=true",
 					},
-					settings = {
-						clangd = {
-							-- Formatting settings
-							["clangd.formatting.IndentWidth"] = 4, -- Set the tab width to 4 spaces
-							["clangd.formatting.TabWidth"] = 4, -- Set the tab width to 4 spaces
-							["clangd.formatting.useTab"] = false, -- Use spaces instead of tabs
-						},
+					filetypes = { "c", "cpp", "h", "hpp" },
+					-- 2. Use 'init_options' for start-up flags
+					init_options = {
+						fallbackFlags = { "" },
 					},
 				},
 				-- gopls = {},
@@ -252,6 +251,9 @@ return {
 					end,
 				},
 			})
+			for server_name, config in pairs(servers) do
+				vim.lsp.config[server_name] = config
+			end
 		end,
 	},
 }

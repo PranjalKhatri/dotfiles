@@ -8,7 +8,12 @@ if vim.g.neovide == true then
 	-- vim.o.guifont='FiraCode NF:h14'
 	-- vim.o.guifont = "Operator Mono,FiraCode NF:h14"
 	vim.o.guifont = "FiraCode Nerd Font Mono:h14"
+	vim.g.neovide_floating_corner_radius = 0.3
+	-- vim.o.guifont = "JetBrainsMono Nerd Font MONO:h15"
 	vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
+	vim.g.neovide_transparency = 0.96
+	vim.g.neovide_title_background_color = "#212536"
+	vim.g.neovide_title_text_color = "Pink"
 	vim.g.neovide_cursor_vfx_mode = "railgun"
 end
 -- set true if you have nerd font in terminal
