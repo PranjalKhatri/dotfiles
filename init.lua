@@ -1,6 +1,7 @@
 require("core.options")
 require("core.keymaps")
 require("custom.competetive_programming.cp")
+require("custom.cmake.commands")
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -30,6 +31,7 @@ require("lazy").setup({
 	require("custom.competetive_programming.competiest"),
 	-- require("plugins.hardtime"),
 	require("plugins.mini"),
+	require("plugins.debugging"),
 })
 require("lsp_signature").setup()
 require("mini.surround").setup()

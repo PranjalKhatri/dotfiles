@@ -4,12 +4,6 @@ vim.api.nvim_create_autocmd({ "TermEnter", "FocusGained", "BufEnter" }, {
 	command = "silent! checktime",
 })
 
-vim.opt.autoread = true
-vim.api.nvim_create_autocmd({ "TermEnter", "FocusGained", "BufEnter" }, {
-	pattern = "*",
-	command = "silent! checktime",
-})
-
 local function setup_problem()
 	-- Prompt the user for the problem number/name
 	local problem_name = vim.fn.input("Enter problem number: ")

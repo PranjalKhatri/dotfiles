@@ -192,7 +192,7 @@ return {
 					filetypes = { "c", "cpp", "h", "hpp" },
 					-- 2. Use 'init_options' for start-up flags
 					init_options = {
-						fallbackFlags = { "" },
+						fallbackFlags = { "-std=c++23", "-std=c23" },
 					},
 				},
 				-- gopls = {},

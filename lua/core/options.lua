@@ -8,7 +8,7 @@ if vim.g.neovide == true then
 	-- vim.o.guifont='FiraCode NF:h14'
 	-- vim.o.guifont = "Operator Mono,FiraCode NF:h14"
 	vim.o.guifont = "FiraCode Nerd Font Mono:h14"
-	vim.g.neovide_floating_corner_radius = 0.3
+	vim.g.neovide_floating_corner_radius = 0.4
 	-- vim.o.guifont = "JetBrainsMono Nerd Font MONO:h15"
 	vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
 	vim.g.neovide_transparency = 0.96
@@ -16,6 +16,42 @@ if vim.g.neovide == true then
 	vim.g.neovide_title_text_color = "Pink"
 	vim.g.neovide_cursor_vfx_mode = "railgun"
 end
+
+local min_font_size = 6
+local max_font_size = 25
+
+-- Adjust Neovide font size
+local function adjust_font_size(amount)
+	local guifont = vim.o.guifont
+	-- Extract size from :hNN format
+	local size = tonumber(guifont:match(":h(%d+)"))
+	if not size then
+		vim.notify("Could not detect font size in guifont", vim.log.levels.ERROR)
+		return
+	end
+
+	local new_size = size + amount
+	if new_size < min_font_size or new_size > max_font_size then
+		return
+	end
+
+	-- Replace old size with new size
+	local new_font = guifont:gsub(":h%d+", ":h" .. new_size)
+	vim.o.guifont = new_font
+end
+
+-- Commands
+vim.api.nvim_create_user_command("LargerFont", function()
+	adjust_font_size(1)
+end, {})
+
+vim.api.nvim_create_user_command("SmallerFont", function()
+	adjust_font_size(-1)
+end, {})
+
+-- Optional keymaps
+vim.keymap.set("n", "<C-=>", "<cmd>LargerFont<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-->", "<cmd>SmallerFont<CR>", { noremap = true, silent = true })
 -- set true if you have nerd font in terminal
 vim.g.have_nerd_font = true
 -- [[ Setting options ]]
