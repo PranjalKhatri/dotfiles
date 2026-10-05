@@ -3,6 +3,10 @@ vim.opt.tabstop = 4
 vim.opt.expandtab = true
 --NEOVIDE SETTINGS
 if vim.g.neovide == true then
+	vim.opt.winblend = 100
+	vim.opt.pumblend = 100
+	vim.g.neovide_floating_blur_amount_x = 30
+	vim.g.neovide_floating_blur_amount_y = 30
 	-- vim.cmd 'set guifont=Hack\ NF:h10'
 	-- vim.o.guifont='Consolas:h10'
 	-- vim.o.guifont='FiraCode NF:h14'
@@ -16,6 +20,17 @@ if vim.g.neovide == true then
 	vim.g.neovide_title_background_color = "#212536"
 	vim.g.neovide_title_text_color = "Pink"
 	vim.g.neovide_cursor_vfx_mode = "railgun"
+end
+
+if vim.fn.has("win32") == 1 then
+	vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+
+	vim.opt.shellcmdflag =
+		"-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+	vim.opt.shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+	vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+	vim.opt.shellquote = ""
+	vim.opt.shellxquote = ""
 end
 
 local min_font_size = 6

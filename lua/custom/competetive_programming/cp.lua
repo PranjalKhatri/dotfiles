@@ -75,7 +75,18 @@ local function setup_problem()
 	-- Send compile and run commands
 	if term_chan then
 		-- Use relative paths since we're already in the correct directory
-		vim.fn.chansend(term_chan, "g++ -o solution main.cpp && solution < test.in > test.out\n")
+		-- vim.fn.chansend(term_chan, "g++ -o solution main.cpp && solution < test.in > test.out\n")
+		local shell = vim.o.shell:lower()
+		local is_powershell = shell:match("pwsh") or shell:match("powershell")
+
+		local cmd
+		if is_powershell then
+			cmd = "g++ -o solution main.cpp; if ($?) { Get-Content -Raw .\\test.in | .\\solution.exe > test.out }\n"
+		else
+			cmd = "g++ -o solution main.cpp && ./solution < test.in > test.out\n"
+		end
+
+		vim.fn.chansend(term_chan, cmd)
 	else
 		print("Terminal not found!")
 	end

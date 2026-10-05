@@ -26,13 +26,17 @@ require("lazy").setup({
 	require("plugins.misc"),
 	require("plugins.alpha"),
 	require("plugins.render-markdown"),
-	require("custom.competetive_programming.competiest"),
+	-- require("custom.competetive_programming.competiest"),
 	-- require("plugins.hardtime"),
 	require("plugins.mini"),
 	require("plugins.debugging"),
+	require("plugins.treesitter-context"),
+	require("plugins.toggleterm"),
+	require("plugins.cmake"),
+	require("plugins.bigfile"),
 })
 require("lsp_signature").setup()
 require("mini.surround").setup()
+require("treesitter-context").setup()
 
 require("custom.competetive_programming.cp")
-require("custom.cmake.commands")

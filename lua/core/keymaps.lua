@@ -91,3 +91,30 @@ vim.keymap.set("n", "[w", function()
 		severity = vim.diagnostic.severity.WARN,
 	})
 end, { desc = "Prev warning" })
+local function run_cpp()
+	local file = vim.fn.expand("%:p")
+	local exe = vim.fn.expand("%:p:r") .. ".exe"
+
+	local args = vim.fn.input("Arguments: ")
+
+	local cwd = vim.fn.expand("%:p:h")
+	if cwd == "" then
+		cwd = vim.fn.getcwd()
+	end
+
+	vim.cmd("botright new")
+	vim.cmd("resize 15")
+
+	local cmd = string.format('clang++ -std=c++23 -O2 "%s" -o "%s" && "%s" %s', file, exe, exe, args)
+
+	vim.fn.jobstart(cmd, {
+		term = true,
+		cwd = cwd,
+	})
+
+	vim.cmd("startinsert")
+end
+
+vim.keymap.set("n", "<leader>rr", run_cpp, {
+	desc = "Compile and run C++",
+})
